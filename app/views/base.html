@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}FlowTrack{% endblock %} | 물류 재고 자동화</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+
+  <!-- 헤더 -->
+  <nav class="bg-white border-b border-gray-200 px-6 py-3 flex items-center gap-6">
+    <a href="/" class="text-lg font-bold text-blue-600">FlowTrack</a>
+    <a href="/" class="text-sm text-gray-500 hover:text-gray-800">업로드</a>
+    <a href="/report" class="text-sm text-gray-500 hover:text-gray-800">리포트</a>
+    <a href="/sample-download" class="ml-auto text-xs text-blue-500 hover:underline">샘플 엑셀 다운로드</a>
+  </nav>
+
+  <!-- 본문 -->
+  <main class="max-w-5xl mx-auto px-4 py-8">
+    {% if error %}
+    <div class="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm">
+      {{ error }}
+    </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+</body>
+</html>
