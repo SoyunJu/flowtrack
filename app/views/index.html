@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}업로드{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto">
+  <h1 class="text-2xl font-bold mb-2">물류 입출고 분석</h1>
+  <p class="text-gray-500 text-sm mb-6">
+    입출고 엑셀을 업로드하면 재고 현황과 GPT 이상 탐지 리포트를 자동 생성합니다.
+  </p>
+
+  <!-- 업로드 폼 -->
+  <form action="/upload" method="post" enctype="multipart/form-data"
+        class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+    <label class="block mb-4">
+      <span class="text-sm font-medium text-gray-700">엑셀 / CSV 파일 선택</span>
+      <input type="file" name="file" accept=".xlsx,.xls,.csv" required
+             class="mt-1 block w-full text-sm text-gray-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-50 file:text-blue-700
+                    hover:file:bg-blue-100" />
+    </label>
+
+    <button type="submit"
+            class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white
+                   rounded font-semibold text-sm transition">
+      분석 시작
+    </button>
+  </form>
+
+  <!-- 필수 컬럼 안내 -->
+  <div class="mt-6 bg-blue-50 border border-blue-100 rounded-lg p-4 text-sm text-blue-800">
+    <p class="font-semibold mb-2">필수 컬럼 (한글/영문 모두 지원)</p>
+    <ul class="list-disc list-inside space-y-1 text-blue-700">
+      <li>날짜 / date</li>
+      <li>품목코드 / item_code</li>
+      <li>품목명 / item_name</li>
+      <li>구분 / type  →  값: <code>입고</code> 또는 <code>출고</code></li>
+      <li>수량 / quantity</li>
+      <li>단위 / unit  (선택)</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
